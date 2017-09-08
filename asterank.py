@@ -12,9 +12,11 @@ import json
 
 
 #Request results from Asterank API - query for all results with limit value set to 100
+
 response = requests.get("http://www.asterank.com/api/asterank?query={}&limit=1000")
 
 #Decode response as json list (not a dictionary for this API)
+
 data = response.json()
 
 # OPTIONAL - Add exception handling here in case response.json fails - look for ValueError:  No JSON object could be decode
