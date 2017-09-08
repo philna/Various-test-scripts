@@ -1,0 +1,33 @@
+from lxml import html
+import requests
+
+page = requests.get('http://abell.as.arizona.edu/~hill/list/bigtel99.htm')
+tree = html.fromstring(page.content)
+
+#This is the table title:
+tableTitle = tree.xpath('//font[@size="4"]/text()')
+
+#This is the table column header
+tableColumnsHeaders = tree.xpath('//tr/th/font[@size="2"]/text()')
+
+#This is a row of data
+tableData = tree.xpath('//tr/td/font[@size="2"]/text()')
+
+
+"""
+
+
+
+#This will create a list of prices
+prices = tree.xpath('//span[@class="item-price"]/text()')
+
+print ('Buyers: ', buyers)
+print ('Prices: ', prices)
+
+
+"""
+
+
+print("Types of telescopes", tableTitle)
+print("Types of telescopes", tableColumnsHeaders)
+print("Types of telescopes", tableData)

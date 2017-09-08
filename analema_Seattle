@@ -1,0 +1,79 @@
+import ephem
+import datetime
+import math
+
+"""
+Compute an analemma (az, alt) for Seattle, Washington
+
+1/10/2017
+
+"""
+
+
+#Seattle, WA (USA) - Phinney Ridge
+
+#Create new instance of Observer() object
+observer = ephem.Observer()
+
+#Set location observer latitude, logitude, and elevation
+observer.lon = '-122.349'   # +E
+observer.lat = '47.67459'      # +N
+observer.elevation = 66 # meters
+
+#Convert ephem data object (in UTC) to local time
+d = ephem.Date('2017/1/12 12:00:00')
+ephem.localtime(d)
+
+#Create new instance of Sun object
+s = ephem.Sun()
+
+
+#Convert longitude into hours
+hourAngle = float(observer.lon) * 12 / math.pi
+print('hour angle: {}'.format(hourAngle))
+
+print('ephem.hour: {}'.format(ephem.hour))
+
+print(ephem.date + ephem.hour)
+
+
+
+#Standard time at noon in UTC
+dd = ephem.date('2017/1/12 12:00:00')
+
+print(dd - hourAngle)
+
+print('date delta: {}'.format(ephem.date(dd- hourAngle)))
+
+
+
+
+
+date = '2017/1/12 12:00'
+adjtime = ephem.date(ephem.date(date) \
+                     - float(observer.lon) * 12 / math.pi * ephem.hour)
+observer.date = adjtime
+
+
+
+
+
+
+#Compute local noon for Seattle
+
+"""
+
+#Iterate through months
+for m in range(1, 13) :
+#   Set date property
+    observer.date = '2017/%d/15 12:00' % (m)
+#   Pass observer to compute method
+    s.compute(observer)
+    alt = math.degrees(float(s.alt))
+    az = math.degrees(float(s.az))
+
+#   print az, alt for Sun for Seattle in radians
+    print ('{}  {}  {}'.format(observer.date, alt, az))
+
+"""
+
