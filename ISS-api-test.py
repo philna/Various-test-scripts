@@ -41,6 +41,9 @@ print('{}  {}  {}'.format("Pass Duration (minutes)", ",", "Rise time above (10°
 #Write file column headers
 new_file.write('{}  {}  {}'.format("Pass Duration (minutes)", ",", "Rise time above (10° elevation)\n"))
 
+print(type(response.risetime))
+
+
 #Iterate - response is the key - see API docs
 for each in data['response']:
     myList = ['{:5.3f}'.format(each['duration']/60) , arrow.get(each['risetime']).format('YYYY-MM-DD HH:mm:ss ZZ')]
